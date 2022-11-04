@@ -9,9 +9,6 @@ using Greed.Game.Services;
 
 namespace Greed
 {
-    /// <summary>
-    /// The program's entry point.
-    /// </summary>
     class Program
     {
         private static int FRAME_RATE = 7;
@@ -27,16 +24,10 @@ namespace Greed
         private static int DEFAULT = 20;
 
 
-        /// <summary>
-        /// Starts the program using the given arguments.
-        /// </summary>
-        /// <param name="args">The given arguments.</param>
+ 
         static void Main(string[] args)
         {
-            // create the cast
             Cast cast = new Cast();
-
-            // create the banner
             Actor banner = new Actor();
             banner.SetText("");
             banner.SetFontSize(FONT_SIZE);
@@ -44,7 +35,6 @@ namespace Greed
             banner.SetPosition(new Point(CELL_SIZE, 0));
             cast.AddActor("banner", banner);
 
-            // create the robot
             Actor robot = new Actor();
             robot.SetText("<^>");
             robot.SetFontSize(FONT_SIZE);
@@ -52,15 +42,10 @@ namespace Greed
             robot.SetPosition(new Point(MAX_X/2, MAX_Y - 30));
             cast.AddActor("robot", robot);
 
-            // load the messages
-            //List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
-
-            // create the artifacts
             Random random = new Random();
             for (int i = 0; i < DEFAULT; i++)
             {
                 string text = ((char)(42)).ToString();
-                //string message = messages[i];
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);

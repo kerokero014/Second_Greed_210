@@ -24,21 +24,11 @@ namespace Greed.Game.Directing
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
 
-        /// <summary>
-        /// Constructs a new instance of Director using the given KeyboardService and VideoService.
-        /// </summary>
-        /// <param name="keyboardService">The given KeyboardService.</param>
-        /// <param name="videoService">The given VideoService.</param>
         public Director(KeyboardService keyboardService, VideoService videoService)
         {
             this.keyboardService = keyboardService;
             this.videoService = videoService;
         }
-
-        /// <summary>
-        /// Starts the game by running the main game loop for the given cast.
-        /// </summary>
-        /// <param name="cast">The given cast.</param>
         public void StartGame(Cast cast)
         { 
             videoService.OpenWindow();
@@ -51,10 +41,7 @@ namespace Greed.Game.Directing
             videoService.CloseWindow();
         }
 
-        /// <summary>
-        /// Gets directional input from the keyboard and applies it to the robot.
-        /// </summary>
-        /// <param name="cast">The given cast.</param>
+
         private void GetInputs(Cast cast)
         {
             List<Actor> artifacts = cast.GetActors("artifacts");
@@ -69,11 +56,6 @@ namespace Greed.Game.Directing
             Point velocity = keyboardService.GetDirection();
             robot.SetVelocity(velocity); 
         }
-
-        /// <summary>
-        /// Updates the robot's position and resolves any collisions with artifacts.
-        /// </summary>
-        /// <param name="cast">The given cast.</param>
         private void DoUpdates(Cast cast)
         {
 
@@ -106,10 +88,7 @@ namespace Greed.Game.Directing
             } 
         }
 
-        /// <summary>
-        /// Draws the actors on the screen.
-        /// </summary>
-        /// <param name="cast">The given cast.</param>
+
         public void DoOutputs(Cast cast)
         {
             List<Actor> actors = cast.GetAllActors();
