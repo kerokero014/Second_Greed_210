@@ -105,13 +105,12 @@ namespace Greed
                 cast.AddActor("artifacts", artifact);
             }
 
-            // start the game
             KeyboardService keyboardService = new KeyboardService(CELL_SIZE);
             VideoService videoService = new VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
             Director director = new Director(keyboardService, videoService);
             director.StartGame(cast);
 
-            // test comment
+
         }
     }
 }
