@@ -16,7 +16,7 @@ namespace Greed
         private static int MAX_Y = 600;
         private static int CELL_SIZE = 15;
         private static int FONT_SIZE = 15;
-        private static int COLS = 60;
+        private static int COLUMS = 60;
         private static int ROWS = 40;
         private static string CAPTION = "Greed";
         private static string DATA_PATH = "Data/messages.txt";
@@ -47,7 +47,7 @@ namespace Greed
             {
                 string text = ((char)(42)).ToString();
 
-                int x = random.Next(1, COLS);
+                int x = random.Next(1, COLUMS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
@@ -71,7 +71,7 @@ namespace Greed
                 string text = ((char)(111)).ToString();
                 //string message = messages[i];
 
-                int x = random.Next(1, COLS);
+                int x = random.Next(1, COLUMS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
@@ -91,11 +91,9 @@ namespace Greed
             }
 
             KeyboardService keyboardService = new KeyboardService(CELL_SIZE);
-            VideoService videoService = new VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
-            Director director = new Director(keyboardService, videoService);
-            director.StartGame(cast);
-
-
+            WindowService windowService = new WindowService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
+            Director director = new Director(keyboardService, windowService);
+            director.StartGame(cast); 
         }
     }
 }

@@ -5,7 +5,7 @@ using Greed.Game.Casting;
 
 namespace Greed.Game.Services
 {
-    public class VideoService
+    public class WindowService
     {
         private int cellSize = 15;
         private string caption = "";
@@ -14,7 +14,7 @@ namespace Greed.Game.Services
         private int frameRate = 0;
         private bool debug = false;
 
-        public VideoService(string caption, int width, int height, int cellSize, int frameRate, 
+        public WindowService(string caption, int width, int height, int cellSize, int frameRate, 
                 bool debug)
         {
             this.caption = caption;

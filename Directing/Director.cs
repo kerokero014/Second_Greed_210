@@ -12,33 +12,27 @@ using Greed.Game.Directing;
 
 namespace Greed.Game.Directing
 {
-    /// <summary>
-    /// <para>A person who directs the game.</para>
-    /// <para>
-    /// The responsibility of a Director is to control the sequence of play.
-    /// </para>
-    /// </summary>
     public class Director
     {
         public int score = 0;
         private KeyboardService keyboardService = null;
-        private VideoService videoService = null;
+        private WindowService wService = null;
 
-        public Director(KeyboardService keyboardService, VideoService videoService)
+        public Director(KeyboardService keyboardService, WindowService videoService)
         {
             this.keyboardService = keyboardService;
-            this.videoService = videoService;
+            this.wService = videoService;
         }
         public void StartGame(Cast cast)
         { 
-            videoService.OpenWindow();
-            while (videoService.IsWindowOpen())
+            wService.OpenWindow();
+            while (wService.IsWindowOpen())
             {
                 GetInputs(cast);
                 DoUpdates(cast);
                 DoOutputs(cast);
             }
-            videoService.CloseWindow();
+            wService.CloseWindow();
         }
 
 
@@ -48,8 +42,8 @@ namespace Greed.Game.Directing
             foreach (Actor actor in artifacts){
                 Point artifactvelocity = keyboardService.MoveArtifact();
                 actor.SetVelocity(artifactvelocity);
-                int maxX = videoService.GetWidth();
-                int maxY = videoService.GetHeight();
+                int maxX = wService.GetWidth();
+                int maxY = wService.GetHeight();
                 actor.MoveNext(maxX, maxY);
             }
             Actor robot = cast.GetFirstActor("robot");
@@ -64,8 +58,8 @@ namespace Greed.Game.Directing
             List<Actor> artifacts = cast.GetActors("artifacts");
 
             banner.SetText($"Score: {score.ToString()}");
-            int maxX = videoService.GetWidth();
-            int maxY = videoService.GetHeight();
+            int maxX = wService.GetWidth();
+            int maxY = wService.GetHeight();
             robot.MoveNext(maxX, maxY);
 
             Random random = new Random();
@@ -92,9 +86,9 @@ namespace Greed.Game.Directing
         public void DoOutputs(Cast cast)
         {
             List<Actor> actors = cast.GetAllActors();
-            videoService.ClearBuffer();
-            videoService.DrawActors(actors);
-            videoService.FlushBuffer();
+            wService.ClearBuffer();
+            wService.DrawActors(actors);
+            wService.FlushBuffer();
         }
 
     }
